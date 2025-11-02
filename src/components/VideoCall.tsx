@@ -155,20 +155,21 @@ export default function VideoCall({ roomId }: Props) {
       {/* Main content */}
       <div className="relative z-10 min-h-screen flex flex-col p-4 md:p-6">
         {/* Header */}
-        <div className="flex justify-between items-center mb-6">
-          <div className="text-white">
-            <h1 className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
+        {/* Header */}
+        <div className="flex justify-between items-start mb-6">
+          <div className="text-white flex-shrink min-w-0">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
               MeetX
             </h1>
-            <p className="text-sm text-gray-300 mt-1">
+            <p className="text-xs sm:text-sm text-gray-300 mt-1 truncate">
               Room: {roomId.slice(0, 8)}...
             </p>
           </div>
 
-          <div className="relative">
+          <div className="relative flex-shrink-0 ml-2">
             <button
               onClick={() => setShowShareMenu(!showShareMenu)}
-              className="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-lg flex items-center gap-2 transition-all shadow-lg hover:shadow-xl"
+              className="px-3 sm:px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-lg flex items-center gap-2 transition-all shadow-lg hover:shadow-xl"
             >
               <Share2 size={18} />
               <span className="hidden sm:inline">Share</span>
@@ -176,7 +177,7 @@ export default function VideoCall({ roomId }: Props) {
 
             {/* Share Menu */}
             {showShareMenu && (
-              <div className="absolute right-0 mt-2 w-56 bg-gray-800 rounded-xl shadow-2xl border border-gray-700 overflow-hidden">
+              <div className="fixed sm:absolute right-4 sm:right-0 mt-2 w-[calc(100vw-2rem)] sm:w-56 max-w-xs bg-gray-800 rounded-xl shadow-2xl border border-gray-700 overflow-hidden z-50">
                 <button
                   onClick={copyRoomLink}
                   className="w-full px-4 py-3 text-left text-white hover:bg-gray-700 flex items-center gap-3 transition-colors"
