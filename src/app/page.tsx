@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
 import { Video, Users, Shield, Zap } from "lucide-react";
+import RippleGrid from "@/components/RippleGrid"; // Adjust the import path as needed
 
 export default function HomePage() {
   const router = useRouter();
@@ -14,24 +15,34 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-900 relative overflow-hidden">
       {/* Ripple Grid Background */}
-      <div
-        className="absolute inset-0 opacity-20"
-        style={{
-          backgroundImage: `
-            radial-gradient(circle at 25% 25%, rgba(120, 119, 198, 0.3) 0%, transparent 55%),
-            radial-gradient(circle at 75% 75%, rgba(120, 119, 198, 0.3) 0%, transparent 55%),
-            linear-gradient(to right, #1a1a2e, #16213e)
-          `,
-          backgroundSize: "50px 50px",
-          backgroundPosition: "0 0, 25px 25px",
-        }}
-      ></div>
+      <div className="absolute inset-0">
+        <RippleGrid
+          enableRainbow={false}
+          gridColor="#7877c6"
+          rippleIntensity={0.05}
+          gridSize={10.0}
+          gridThickness={15.0}
+          fadeDistance={1.5}
+          vignetteStrength={2.0}
+          glowIntensity={0.15}
+          opacity={0.3}
+          gridRotation={0}
+          mouseInteraction={true}
+          mouseInteractionRadius={1.5}
+        />
+      </div>
 
       {/* Additional animated elements for depth */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-purple-500 rounded-full mix-blend-overlay filter blur-xl opacity-10 animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-32 h-32 bg-blue-500 rounded-full mix-blend-overlay filter blur-xl opacity-10 animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 w-24 h-24 bg-pink-500 rounded-full mix-blend-overlay filter blur-xl opacity-10 animate-pulse delay-2000"></div>
+        <div
+          className="absolute bottom-1/4 right-1/4 w-32 h-32 bg-blue-500 rounded-full mix-blend-overlay filter blur-xl opacity-10 animate-pulse"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute top-1/2 left-1/2 w-24 h-24 bg-pink-500 rounded-full mix-blend-overlay filter blur-xl opacity-10 animate-pulse"
+          style={{ animationDelay: "2s" }}
+        ></div>
       </div>
 
       {/* Content */}
